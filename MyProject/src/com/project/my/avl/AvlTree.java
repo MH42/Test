@@ -8,7 +8,7 @@ public class AvlTree {
 
 	private class Node {
 		private int key;
-		private int balance;
+		private int balance1;
 		private Node left, right, parent;
 
 		Node(int k, Node p) {
@@ -17,26 +17,26 @@ public class AvlTree {
 		}
 	}
 
-	public boolean insert(int key) {
+	public boolean insert(int k) {
 		if (root == null)
-			root = new Node(key, null);
+			root = new Node(k, null);
 		else {
 			Node n = root;
 			Node parent;
 			while (true) {
-				if (n.key == key)
+				if (n.key == k)
 					return false;
 
 				parent = n;
 
-				boolean goLeft = n.key > key;
+				boolean goLeft = n.key > k;
 				n = goLeft ? n.left : n.right;
 
 				if (n == null) {
-					if (goLeft) {
-						parent.left = new Node(key, parent);
+					if (!goLeft) {
+						parent.right = new Node(k, parent);
 					} else {
-						parent.right = new Node(key, parent);
+						parent.left = new Node(k, parent);
 					}
 					rebalance(parent);
 					break;
@@ -96,13 +96,13 @@ public class AvlTree {
 	private void rebalance(Node n) {
 		setBalance(n);
 
-		if (n.balance == -2) {
+		if (n.balance1 == -2) {
 			if (height(n.left.left) >= height(n.left.right))
 				n = rotateRight(n);
 			else
 				n = rotateLeftThenRight(n);
 
-		} else if (n.balance == 2) {
+		} else if (n.balance1 == 2) {
 			if (height(n.right.right) >= height(n.right.left))
 				n = rotateLeft(n);
 			else
@@ -186,7 +186,7 @@ public class AvlTree {
 
 	private void setBalance(Node... nodes) {
 		for (Node n : nodes)
-			n.balance = height(n.right) - height(n.left);
+			n.balance1 = height(n.right) - height(n.left);
 	}
 
 	public void printBalance() {
@@ -196,7 +196,7 @@ public class AvlTree {
 	private void printBalance(Node n) {
 		if (n != null) {
 			printBalance(n.left);
-			System.out.printf("%s ", n.balance);
+			System.out.printf("%s ", n.balance1);
 			printBalance(n.right);
 		}
 	}
