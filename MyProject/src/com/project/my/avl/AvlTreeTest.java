@@ -7,11 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AvlTreeTest {
-	private AvlTree avlTree;
+	private AvlTreeA avlTree;
 
 	@Before
 	public void setUp() throws Exception {
-		avlTree = new AvlTree();
+		avlTree = new AvlTreeA();
 	}
 
 	@Test
