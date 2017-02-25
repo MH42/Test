@@ -1,7 +1,6 @@
 package com.project.my.avl;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,10 +20,10 @@ public class AvlTreeTest {
 		}
 	}
 
-	@Test
-	public void testDelete() {
-		fail("Not yet implemented");
-	}
+	// @Test
+	// public void testDelete() {
+	// fail("Not yet implemented");
+	// }
 
 	@Test
 	public void testSearch() {
